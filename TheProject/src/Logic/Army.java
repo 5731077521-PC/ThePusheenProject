@@ -2,7 +2,10 @@ package Logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
+import Render.Resource;
+//ediited by net
 public class Army extends Enemy {
 
 	public Army(int x,int y,int z,int direction,int hp){
@@ -14,8 +17,10 @@ public class Army extends Enemy {
 	
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.GREEN);
-		g.fillRect(x, y, 50, 50);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(Resource.tankLeft, null, x, y);
+		//g.setColor(Color.GREEN);
+		//g.fillRect(x, y, 50, 50);
 	}
 
 }

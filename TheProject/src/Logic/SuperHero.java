@@ -1,10 +1,12 @@
 package Logic;
-
+//ediited by net
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import Main.Config;
 import RandomUtility.RandomUtility;
+import Render.Resource;
 
 public class SuperHero extends Enemy {
 
@@ -56,8 +58,16 @@ public class SuperHero extends Enemy {
 	
 	@Override
 	public void draw(Graphics g) {
+		/*
 		g.setColor(Color.RED);
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(x, y, 50, 50); */
+		Graphics2D g2 = (Graphics2D) g;
+		if(directionX<0)
+			g2.drawImage(Resource.heroALeft, null, x, y);
+		else
+			g2.drawImage(Resource.heroARight, null, x, y);
+
+
 		
 	}
 

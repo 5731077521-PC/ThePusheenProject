@@ -6,28 +6,30 @@ import java.awt.Image;
 
 import Main.Config;
 import Render.IRenderable;
-
+import Render.Resource;
+//ediited by net
 public class Building implements Destroyable, IRenderable{
-	private int x;
+	private int x,shiftY;
 	private int width, height;
 	private int hp;	
-	private Image bulidingImage;
+	private Image buildingImage;
 	private boolean isDestroyed;
 	
 	public Building(){
 		x = 0;
 		width = 0;
 		height = 0;
-		bulidingImage = null;
+		buildingImage = null;
 		hp = MAX_P;
 		isDestroyed = false;
 	}
 	
-	public Building(int x, int width, int height, Image buildingImage){
+	public Building(int x, int shiftY, int width, int height, Image buildingImage){
 		this.x = x;
+		this.shiftY = shiftY;
 		this.width = width;
 		this.height = height;
-		this.bulidingImage = buildingImage;
+		this.buildingImage = buildingImage;
 		hp = MAX_P;
 		isDestroyed = false;
 	}
@@ -38,7 +40,7 @@ public class Building implements Destroyable, IRenderable{
 	
 	@Override
 	public int getZ() {
-		return 0;
+		return 0-shiftY;
 	}
 
 	@Override
@@ -58,11 +60,13 @@ public class Building implements Destroyable, IRenderable{
 	
 	@Override
 	public void draw(Graphics g) {
-		//g.drawImage(bulidingImage, x, Config.SCREEN_HEIGHT - height, width, height, null);
+		g.drawImage(buildingImage, x, Config.SCREEN_HEIGHT-shiftY - height, width, height, null);
+		/*
 		g.setColor(Color.BLACK);
 		g.fillRect(x, Config.SCREEN_HEIGHT - height, width+2, height+2);
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(x, Config.SCREEN_HEIGHT - height, width, height);
+		*/
 	}
 
 	@Override

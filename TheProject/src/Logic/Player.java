@@ -2,24 +2,29 @@ package Logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JComponent;
 
 import Input.InputUtility;
 import Main.Config;
 import RandomUtility.RandomUtility;
 import Render.IRenderable;
+import Render.Resource;
 
-public class Player implements IRenderable{
+public class Player extends JComponent implements IRenderable,Pusheen{
 
 	private int direction, speed, x, y;
 	private int bulletType;
-	public boolean isUsingLazer;
+	public boolean isUsingLazer,isMoving;
 	//private boolean readyToAttack = false;
 	
 	public Player(int x,int y,int speed){
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
+		this.isMoving = false; // filled code
 		
 		bulletType = 3; // assume
 		direction = -1;
@@ -81,10 +86,42 @@ public class Player implements IRenderable{
 		return Math.abs(x+30 - b.x)<=30 && Math.abs(y+100 -b.y) <=100;
 	}
 	
+	 public void paintComponent(Graphics2D g) {
+	        super.paintComponent(g);
+	        //if(!isMoving||action==0) {		        
+	        //} 
+	        super.paintComponent(g);
+	        if(!isMoving) {
+	        	Resource.pusheenLeftStill.paintIcon(this, g, x, y);
+	        	return;
+	        } 
+	        
+		    if(InputUtility.getKeyPressed(KeyEvent.VK_LEFT) || InputUtility.getKeyPressed(KeyEvent.VK_A))
+		         Resource.pusheenLeftRun.paintIcon(this, g, x, y);
+		        
+		    if(InputUtility.getKeyPressed(KeyEvent.VK_RIGHT) || InputUtility.getKeyPressed(KeyEvent.VK_D))
+		         Resource.pusheenRightRun.paintIcon(this, g, x, y);
+		        
+		       
+
+		        /*
+	        else if(action==1) 
+	        	 Resource.pusheenLeftRun.paintIcon(this, g, x, y);
+	        else if(action==2) 
+	        	 Resource.pusheenRightRun.paintIcon(this, g, x, y);
+	        else if(action==3) 
+	        	 Resource.pusheenDance.paintIcon(this, g, x, y);
+	        */
+		        
+	        //((Object) g).drawIcon();
+	    }
+	
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(x, y, 30, 100);
+		//g.drawImage(Resource.pusheenLeftStill,null,x,y);
+
+		//g.setColor(Color.BLACK);
+		//g.fillRect(x, y, 30, 100);
 	}
 
 	@Override
@@ -94,7 +131,8 @@ public class Player implements IRenderable{
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE; 
+		//return Integer.MAX_VALUE; 
+		return -1;
 	}
 
 	public int getBulletType() {
@@ -113,4 +151,13 @@ public class Player implements IRenderable{
 		return y;
 	}
 
+	public boolean isMoving() {
+		return isMoving;
+	}
+
+	public void setMoving(boolean isMoving) {
+		this.isMoving = isMoving;
+	}
+	
+	
 }

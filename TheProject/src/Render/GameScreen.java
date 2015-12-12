@@ -15,8 +15,11 @@ import javax.swing.JComponent;
 
 import Input.InputUtility;
 import Logic.Player;
+import Logic.Pusheen;
 import Main.Config;
+import Logic.GameLogic;
 
+//ediited by net
 public class GameScreen extends JComponent{
 	protected static final long serialVersionUID = 1L;
 
@@ -72,11 +75,13 @@ public class GameScreen extends JComponent{
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
+				GameLogic.getPlayer().getOwner().setMoving(false);
 				InputUtility.setKeyPressed(e.getKeyCode(), false);
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
+				GameLogic.getPlayer().getOwner().setMoving(true);
 				InputUtility.setKeyPressed(e.getKeyCode(), true);
 			}
 		});
@@ -99,12 +104,19 @@ public class GameScreen extends JComponent{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		g2.setBackground(Color.WHITE);
+		//g2.setBackground(Color.WHITE);
+		g2.setBackground(new Color(252,240,228));
 		g2.clearRect(0, 0, Config.SCREEN_WIDTH, Config.SCREEN_WIDTH);
 		//g2.drawImage(Resource.backgroundImage, null, 0, 0);	
 
 		for(IRenderable obj: RenderableHolder.getInstance().getIRenderableList()){
-			if(obj.isVisible()) obj.draw(g2);
+			if(obj.isVisible()) {
+				if(obj instanceof Pusheen) {
+						((Pusheen) obj).paintComponent(g2);
+						continue;
+					}
+				obj.draw(g2);
+			}
 		}
 		
 		DrawingUtility.drawCursor(InputUtility.getMouseX(), InputUtility.getMouseY(), g2);

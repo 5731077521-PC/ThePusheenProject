@@ -1,10 +1,14 @@
 package Logic;
-
+//ediited by net
 import java.awt.Image;
 
+import Render.Resource;
+
 public abstract class Terrain{
-	static final int buildingCount = 50;
-	Building[] bulidings = new Building[buildingCount];
+	// dont't for get to adjust building count!!!!
+	/*
+	static final int buildingCount = 5;
+	public Building[] buildings = new Building[buildingCount];  */
 	Image backgroundImage;
 	
 	public Terrain(Image backgroundImage){

@@ -2,11 +2,13 @@ package Logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import Main.Config;
 import RandomUtility.RandomUtility;
 import Render.IRenderable;
-
+import Render.Resource;
+//ediited by net
 public class Bullet implements IRenderable, Destroyable{
 
 	protected int hp;
@@ -123,8 +125,16 @@ public class Bullet implements IRenderable, Destroyable{
 
 	@Override
 	public void draw(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		if(directionX<0)
+			g2.drawImage(Resource.bulletLeft, null, x, y);
+		else
+			g2.drawImage(Resource.bulletRight, null, x, y);
+
+		/*
 		g.setColor(Color.BLACK);
 		g.fillOval(x-radius, y-radius, 2*radius, 2*radius);
+		*/
 		
 	}
 

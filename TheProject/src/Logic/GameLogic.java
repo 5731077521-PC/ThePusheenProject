@@ -15,9 +15,9 @@ import Main.Config;
 import RandomUtility.RandomUtility;
 import Render.IRenderable;
 import Render.RenderableHolder;
-
+//ediited by net
 public class GameLogic {
-	private PlayerStatus player;
+	private static PlayerStatus player;  // Changed to static
 	private Terrain terrain;
 	private ArrayList<Destroyable> onScreenObject = new ArrayList<Destroyable>();
 	/* NOTE on zCounter
@@ -36,11 +36,36 @@ public class GameLogic {
 		player = new PlayerStatus(100, 0, 0);
 		RenderableHolder.getInstance().add(player.getOwner());
 		
+		// create terrain and its building
+		
+		/*
 		terrain = new TerrainX(null);
-		for(int i=0;i<Terrain.buildingCount;i++){
-			onScreenObject.add(terrain.bulidings[i]);
-			RenderableHolder.getInstance().add(terrain.bulidings[i]);
+		for(int i=0;i<TerrainX.buildingCount;i++){
+			onScreenObject.add(TerrainX.buildings[i]);
+			RenderableHolder.getInstance().add(TerrainX.buildings[i]);
+		}  
+		*/
+		
+		/*
+		terrain = new TerrainA(null);
+		for(int i=0;i<TerrainA.buildingCount;i++){
+			onScreenObject.add(TerrainA.buildings[i]);
+			RenderableHolder.getInstance().add(TerrainA.buildings[i]);
 		}
+		*/
+		/*
+		terrain = new TerrainB(null);
+		for(int i=0;i<TerrainB.buildingCount;i++){
+			onScreenObject.add(TerrainB.buildings[i]);
+			RenderableHolder.getInstance().add(TerrainB.buildings[i]);
+		} 
+		*/
+		
+		terrain = new TerrainC(null);
+		for(int i=0;i<TerrainC.buildingCount;i++){
+			onScreenObject.add(TerrainC.buildings[i]);
+			RenderableHolder.getInstance().add(TerrainC.buildings[i]);
+		} 
 		
 		
 		nextEnemyCreationDelay = RandomUtility.instance.random(0, 100);
@@ -252,4 +277,11 @@ public class GameLogic {
 		}
 		destroyedList.clear();
 	}
+	
+	// created by Net
+	public static PlayerStatus getPlayer() {
+		return player;
+	}
+	
+	
 }
