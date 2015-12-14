@@ -17,6 +17,8 @@ import Render.IRenderable;
 import Render.RenderableHolder;
 //ediited by net
 public class GameLogic {
+	private AssistantA assistantA;
+	private AssistantB assistantB;
 	private static PlayerStatus player;  // Changed to static
 	private Terrain terrain;
 	private ArrayList<Destroyable> onScreenObject = new ArrayList<Destroyable>();
@@ -33,26 +35,32 @@ public class GameLogic {
 	
 	// Called before enter the game loop
 	public synchronized void onStart(){
+		// Create Assistant A and B
+		assistantA = new AssistantA(100,Config.SCREEN_HEIGHT/2,10);
+		assistantB = new AssistantB(200,Config.SCREEN_HEIGHT/2,10);
 		player = new PlayerStatus(100, 0, 0);
+		// Add both assistants to screen
+		RenderableHolder.getInstance().add(assistantA);
+		RenderableHolder.getInstance().add(assistantB);       
 		RenderableHolder.getInstance().add(player.getOwner());
 		
 		// create terrain and its building
 		
-		/*
+		
 		terrain = new TerrainX(null);
 		for(int i=0;i<TerrainX.buildingCount;i++){
 			onScreenObject.add(TerrainX.buildings[i]);
 			RenderableHolder.getInstance().add(TerrainX.buildings[i]);
-		}  
-		*/
+		} 
+		
 		
 		/*
 		terrain = new TerrainA(null);
 		for(int i=0;i<TerrainA.buildingCount;i++){
 			onScreenObject.add(TerrainA.buildings[i]);
 			RenderableHolder.getInstance().add(TerrainA.buildings[i]);
-		}
-		*/
+		} */
+		
 		/*
 		terrain = new TerrainB(null);
 		for(int i=0;i<TerrainB.buildingCount;i++){
@@ -61,12 +69,13 @@ public class GameLogic {
 		} 
 		*/
 		
+		/*
 		terrain = new TerrainC(null);
 		for(int i=0;i<TerrainC.buildingCount;i++){
 			onScreenObject.add(TerrainC.buildings[i]);
 			RenderableHolder.getInstance().add(TerrainC.buildings[i]);
 		} 
-		
+		*/
 		
 		nextEnemyCreationDelay = RandomUtility.instance.random(0, 100);
 		//nextItemCreationDelay = RandomUtility.instance.random(0, 100);
@@ -126,6 +135,8 @@ public class GameLogic {
 				}
 			}
 		}
+		
+		
 		
 		// make enemies attack and move and bullets move and hit(Bullet and Items)
 		
@@ -230,18 +241,19 @@ public class GameLogic {
 			int directionY = RandomUtility.instance.random(0, 1);
 			if(directionY==0) directionY = -1;
 			
-			
+			// Move enemy area to the screen's bottom
 			if(rand <= 40){ // create Police
-				e = new Police(x, Config.SCREEN_HEIGHT/2, zCounter, directionX, Enemy.MAX_P);
+				e = new Police(x, Config.SCREEN_HEIGHT-Config.POLICE_OFFSET, zCounter, directionX, Enemy.MAX_P);
 				System.out.println("SPAWN New Police");
 	
 			}
 			else if(rand <= 75){ // create Army
-				e = new Army(x, Config.SCREEN_HEIGHT/2, zCounter, directionX, Enemy.MAX_P);
+				e = new Army(x, Config.SCREEN_HEIGHT-Config.ARMY_OFFSET, zCounter, directionX, Enemy.MAX_P);
 				System.out.println("SPAWN New Army");
 			}
 			else{ // create SuperHero
-				e = new SuperHero(x, y, zCounter, directionX, directionY, Enemy.MAX_P);
+//---------Added Integer.MAX_VALUE to increase getZ() of heroes more than the building, Be careful of approaching the Upper bound	
+				e = new SuperHero(x, y, zCounter+Integer.MAX_VALUE, directionX, directionY, Enemy.MAX_P);
 				System.out.println("SPAWN New SuperHero");
 			}
 		}

@@ -8,12 +8,13 @@ import Render.Resource;
 //ediited by net
 public class TerrainX extends Terrain{
 	
-	public static final int buildingCount = 23;
+	public static final int buildingCount = 37;
 	public static Building[] buildings = new Building[buildingCount];  
 	
 	private double imageRatio = 0.5;
-	private int shiftYfirstRow = 25;
-	private int shiftYsecondRow = 60;
+	private int shiftYfirstRow = Config.GROUND_OFFSET+30;
+	private int shiftYsecondRow = Config.GROUND_OFFSET+40;
+	private int shiftYthirdRow = Config.GROUND_OFFSET+25;
 	private int sumX;
 	
 	public TerrainX(Image backgroundImage){
@@ -29,30 +30,49 @@ public class TerrainX extends Terrain{
 		*/
 		
 		sumX = 0;
-		buildings[0] = new Building(sumX  ,shiftYfirstRow,(int)(Resource.buildingSprite[5].getWidth()*imageRatio)  ,(int)(Resource.buildingSprite[5].getHeight()*imageRatio)  ,Resource.buildingSprite[5]);
-		buildings[1] = new Building(sumX+=(int)(Resource.buildingSprite[1].getWidth()*imageRatio)+25  ,shiftYfirstRow,  (int)(Resource.buildingSprite[1].getWidth()*imageRatio),  (int)(Resource.buildingSprite[1].getHeight()*imageRatio),  Resource.buildingSprite[1]);
-		buildings[2] = new Building(sumX+=(int)(Resource.buildingSprite[3].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[3].getWidth()*imageRatio),  (int)(Resource.buildingSprite[3].getHeight()*imageRatio),  Resource.buildingSprite[3]);
-		buildings[3] = new Building(sumX+=(int)(Resource.buildingSprite[10].getWidth()*imageRatio)-10  ,shiftYfirstRow,  (int)(Resource.buildingSprite[10].getWidth()*imageRatio),  (int)(Resource.buildingSprite[10].getHeight()*imageRatio),  Resource.buildingSprite[10]);
-		buildings[4] = new Building(sumX+=(int)(Resource.buildingSprite[11].getWidth()*imageRatio)+20  ,shiftYfirstRow,  (int)(Resource.buildingSprite[11].getWidth()*imageRatio),  (int)(Resource.buildingSprite[11].getHeight()*imageRatio),  Resource.buildingSprite[11]);
-		buildings[5] = new Building(sumX+=(int)(Resource.buildingSprite[18].getWidth()*imageRatio)-25  ,shiftYfirstRow,  (int)(Resource.buildingSprite[18].getWidth()*imageRatio),  (int)(Resource.buildingSprite[18].getHeight()*imageRatio),  Resource.buildingSprite[18]);
-		buildings[6] = new Building(sumX+=(int)(Resource.buildingSprite[15].getWidth()*imageRatio)-10  ,shiftYfirstRow,  (int)(Resource.buildingSprite[15].getWidth()*imageRatio),  (int)(Resource.buildingSprite[15].getHeight()*imageRatio),  Resource.buildingSprite[15]);
-		buildings[7] = new Building(sumX+=(int)(Resource.buildingSprite[3].getWidth()*imageRatio)+30  ,shiftYfirstRow,  (int)(Resource.buildingSprite[3].getWidth()*imageRatio),  (int)(Resource.buildingSprite[3].getHeight()*imageRatio),  Resource.buildingSprite[3]);
-		buildings[8] = new Building(sumX+=(int)(Resource.buildingSprite[24].getWidth()*imageRatio)-10  ,shiftYfirstRow,  (int)(Resource.buildingSprite[24].getWidth()*imageRatio),  (int)(Resource.buildingSprite[24].getHeight()*imageRatio),  Resource.buildingSprite[24]);
-		buildings[9] = new Building(sumX+=(int)(Resource.buildingSprite[2].getWidth()*imageRatio)-15  ,shiftYfirstRow,  (int)(Resource.buildingSprite[2].getWidth()*imageRatio),  (int)(Resource.buildingSprite[2].getHeight()*imageRatio),  Resource.buildingSprite[2]);
-		buildings[10] = new Building(sumX+=(int)(Resource.buildingSprite[10].getWidth()*imageRatio)+5  ,shiftYfirstRow,  (int)(Resource.buildingSprite[10].getWidth()*imageRatio),  (int)(Resource.buildingSprite[10].getHeight()*imageRatio),  Resource.buildingSprite[10]);
-		buildings[11] = new Building(sumX+=(int)(Resource.buildingSprite[27].getWidth()*imageRatio)+5  ,shiftYfirstRow,  (int)(Resource.buildingSprite[27].getWidth()*imageRatio),  (int)(Resource.buildingSprite[27].getHeight()*imageRatio),  Resource.buildingSprite[27]);
-		buildings[12] = new Building(sumX+=(int)(Resource.buildingSprite[4].getWidth()*imageRatio)-25  ,shiftYfirstRow,  (int)(Resource.buildingSprite[4].getWidth()*imageRatio),  (int)(Resource.buildingSprite[4].getHeight()*imageRatio),  Resource.buildingSprite[4]);
+		buildings[0] = new Building(sumX  ,shiftYfirstRow,(int)(Resource.buildingSprite[56].getWidth()*imageRatio)  ,(int)(Resource.buildingSprite[56].getHeight()*imageRatio)  ,Resource.buildingSprite[56]);
+		buildings[1] = new Building(sumX+=(int)(Resource.buildingSprite[56].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[63].getWidth()*imageRatio),  (int)(Resource.buildingSprite[63].getHeight()*imageRatio),  Resource.buildingSprite[63]);
+		buildings[2] = new Building(sumX+=(int)(Resource.buildingSprite[63].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[52].getWidth()*imageRatio),  (int)(Resource.buildingSprite[52].getHeight()*imageRatio),  Resource.buildingSprite[52]);
+		buildings[3] = new Building(sumX+=(int)(Resource.buildingSprite[52].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[59].getWidth()*imageRatio),  (int)(Resource.buildingSprite[59].getHeight()*imageRatio),  Resource.buildingSprite[59]);
+		buildings[4] = new Building(sumX+=(int)(Resource.buildingSprite[59].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[48].getWidth()*imageRatio),  (int)(Resource.buildingSprite[48].getHeight()*imageRatio),  Resource.buildingSprite[48]);
+		buildings[5] = new Building(sumX+=(int)(Resource.buildingSprite[48].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[58].getWidth()*imageRatio),  (int)(Resource.buildingSprite[58].getHeight()*imageRatio),  Resource.buildingSprite[58]);
+		buildings[6] = new Building(sumX+=(int)(Resource.buildingSprite[58].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[53].getWidth()*imageRatio),  (int)(Resource.buildingSprite[53].getHeight()*imageRatio),  Resource.buildingSprite[53]);
+		buildings[7] = new Building(sumX+=(int)(Resource.buildingSprite[53].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[53].getWidth()*imageRatio),  (int)(Resource.buildingSprite[53].getHeight()*imageRatio),  Resource.buildingSprite[53]);
+		buildings[8] = new Building(sumX+=(int)(Resource.buildingSprite[53].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[54].getWidth()*imageRatio),  (int)(Resource.buildingSprite[54].getHeight()*imageRatio),  Resource.buildingSprite[54]);
+		buildings[9] = new Building(sumX+=(int)(Resource.buildingSprite[54].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[48].getWidth()*imageRatio),  (int)(Resource.buildingSprite[48].getHeight()*imageRatio),  Resource.buildingSprite[48]);
+		buildings[10] = new Building(sumX+=(int)(Resource.buildingSprite[48].getWidth()*imageRatio) ,shiftYfirstRow,  (int)(Resource.buildingSprite[63].getWidth()*imageRatio),  (int)(Resource.buildingSprite[63].getHeight()*imageRatio),  Resource.buildingSprite[63]);
+		buildings[11] = new Building(sumX+=(int)(Resource.buildingSprite[63].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[59].getWidth()*imageRatio),  (int)(Resource.buildingSprite[59].getHeight()*imageRatio),  Resource.buildingSprite[59]);
+		buildings[12] = new Building(sumX+=(int)(Resource.buildingSprite[59].getWidth()*imageRatio)  ,shiftYfirstRow,  (int)(Resource.buildingSprite[48].getWidth()*imageRatio),  (int)(Resource.buildingSprite[48].getHeight()*imageRatio),  Resource.buildingSprite[48]);
+		buildings[13] = new Building(sumX+=(int)(Resource.buildingSprite[48].getWidth()*imageRatio)+25  ,shiftYfirstRow,  (int)(Resource.buildingSprite[56].getWidth()*imageRatio),  (int)(Resource.buildingSprite[56].getHeight()*imageRatio),  Resource.buildingSprite[56]);
+
 		sumX = 0;
-		buildings[13] = new Building(sumX+=(int)(Resource.buildingSprite[25].getWidth()*imageRatio)-80  ,shiftYsecondRow,  (int)(Resource.buildingSprite[25].getWidth()*imageRatio),  (int)(Resource.buildingSprite[25].getHeight()*imageRatio),  Resource.buildingSprite[25]);
-		buildings[14] = new Building(sumX+=(int)(Resource.buildingSprite[15].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[15].getWidth()*imageRatio),  (int)(Resource.buildingSprite[15].getHeight()*imageRatio),  Resource.buildingSprite[15]);
-		buildings[15] = new Building(sumX+=(int)(Resource.buildingSprite[22].getWidth()*imageRatio)-10  ,shiftYsecondRow,  (int)(Resource.buildingSprite[22].getWidth()*imageRatio),  (int)(Resource.buildingSprite[22].getHeight()*imageRatio),  Resource.buildingSprite[22]);
-		buildings[16] = new Building(sumX+=(int)(Resource.buildingSprite[23].getWidth()*imageRatio)+20  ,shiftYsecondRow,  (int)(Resource.buildingSprite[23].getWidth()*imageRatio),  (int)(Resource.buildingSprite[23].getHeight()*imageRatio),  Resource.buildingSprite[23]);
-		buildings[17] = new Building(sumX+=(int)(Resource.buildingSprite[3].getWidth()*imageRatio)+25  ,shiftYsecondRow,  (int)(Resource.buildingSprite[3].getWidth()*imageRatio),  (int)(Resource.buildingSprite[3].getHeight()*imageRatio),  Resource.buildingSprite[3]);
-		buildings[18] = new Building(sumX+=(int)(Resource.buildingSprite[29].getWidth()*imageRatio)-95  ,shiftYsecondRow,  (int)(Resource.buildingSprite[29].getWidth()*imageRatio),  (int)(Resource.buildingSprite[29].getHeight()*imageRatio),  Resource.buildingSprite[29]);
-		buildings[19] = new Building(sumX+=(int)(Resource.buildingSprite[9].getWidth()*imageRatio)+90  ,shiftYsecondRow,  (int)(Resource.buildingSprite[9].getWidth()*imageRatio),  (int)(Resource.buildingSprite[9].getHeight()*imageRatio),  Resource.buildingSprite[9]);
-		buildings[20] = new Building(sumX+=(int)(Resource.buildingSprite[1].getWidth()*imageRatio)+30  ,shiftYsecondRow,  (int)(Resource.buildingSprite[1].getWidth()*imageRatio),  (int)(Resource.buildingSprite[1].getHeight()*imageRatio),  Resource.buildingSprite[1]);
-		buildings[21] = new Building(sumX+=(int)(Resource.buildingSprite[25].getWidth()*imageRatio)-40  ,shiftYsecondRow,  (int)(Resource.buildingSprite[25].getWidth()*imageRatio),  (int)(Resource.buildingSprite[25].getHeight()*imageRatio),  Resource.buildingSprite[25]);
-		buildings[22] = new Building(sumX+=(int)(Resource.buildingSprite[1].getWidth()*imageRatio)+50  ,shiftYsecondRow,  (int)(Resource.buildingSprite[1].getWidth()*imageRatio),  (int)(Resource.buildingSprite[1].getHeight()*imageRatio),  Resource.buildingSprite[1]);
+		
+		buildings[14] = new Building(sumX  ,shiftYsecondRow,  (int)(Resource.buildingSprite[47].getWidth()*imageRatio),  (int)(Resource.buildingSprite[47].getHeight()*imageRatio),  Resource.buildingSprite[47]);
+		buildings[15] = new Building(sumX+=(int)(Resource.buildingSprite[47].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[54].getWidth()*imageRatio),  (int)(Resource.buildingSprite[54].getHeight()*imageRatio),  Resource.buildingSprite[54]);
+		buildings[16] = new Building(sumX+=(int)(Resource.buildingSprite[54].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[55].getWidth()*imageRatio),  (int)(Resource.buildingSprite[55].getHeight()*imageRatio),  Resource.buildingSprite[55]);
+		buildings[17] = new Building(sumX+=(int)(Resource.buildingSprite[55].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[61].getWidth()*imageRatio),  (int)(Resource.buildingSprite[61].getHeight()*imageRatio),  Resource.buildingSprite[61]);
+		buildings[18] = new Building(sumX+=(int)(Resource.buildingSprite[61].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[59].getWidth()*imageRatio),  (int)(Resource.buildingSprite[59].getHeight()*imageRatio),  Resource.buildingSprite[59]);
+		buildings[19] = new Building(sumX+=(int)(Resource.buildingSprite[59].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[63].getWidth()*imageRatio),  (int)(Resource.buildingSprite[63].getHeight()*imageRatio),  Resource.buildingSprite[63]);
+		buildings[20] = new Building(sumX+=(int)(Resource.buildingSprite[63].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[57].getWidth()*imageRatio),  (int)(Resource.buildingSprite[57].getHeight()*imageRatio),  Resource.buildingSprite[57]);
+		buildings[21] = new Building(sumX+=(int)(Resource.buildingSprite[57].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[59].getWidth()*imageRatio),  (int)(Resource.buildingSprite[59].getHeight()*imageRatio),  Resource.buildingSprite[59]);
+		buildings[22] = new Building(sumX+=(int)(Resource.buildingSprite[41].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[47].getWidth()*imageRatio),  (int)(Resource.buildingSprite[47].getHeight()*imageRatio),  Resource.buildingSprite[47]);
+		buildings[23] = new Building(sumX+=(int)(Resource.buildingSprite[47].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[63].getWidth()*imageRatio),  (int)(Resource.buildingSprite[63].getHeight()*imageRatio),  Resource.buildingSprite[63]);
+		buildings[24] = new Building(sumX+=(int)(Resource.buildingSprite[63].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[54].getWidth()*imageRatio),  (int)(Resource.buildingSprite[54].getHeight()*imageRatio),  Resource.buildingSprite[54]);
+		buildings[25] = new Building(sumX+=(int)(Resource.buildingSprite[54].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[59].getWidth()*imageRatio),  (int)(Resource.buildingSprite[59].getHeight()*imageRatio),  Resource.buildingSprite[59]);
+		buildings[26] = new Building(sumX+=(int)(Resource.buildingSprite[51].getWidth()*imageRatio)  ,shiftYsecondRow,  (int)(Resource.buildingSprite[64].getWidth()*imageRatio),  (int)(Resource.buildingSprite[64].getHeight()*imageRatio),  Resource.buildingSprite[64]);
+
+		sumX = 0;
+		//buildings[26] = new Building(sumX  ,shiftYthirdRow,(int)(Resource.buildingSprite[46].getWidth()*imageRatio)  ,(int)(Resource.buildingSprite[46].getHeight()*imageRatio)  ,Resource.buildingSprite[46]);
+		buildings[27] = new Building(sumX  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[28] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[29] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[30] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[31] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[32] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[33] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[34] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[35] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
+		buildings[36] = new Building(sumX+=(int)(Resource.buildingSprite[46].getWidth()*imageRatio)+40  ,shiftYthirdRow,  (int)(Resource.buildingSprite[46].getWidth()*imageRatio),  (int)(Resource.buildingSprite[46].getHeight()*imageRatio),  Resource.buildingSprite[46]);
 
 
 	}  

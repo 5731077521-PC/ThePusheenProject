@@ -15,7 +15,7 @@ import Render.Resource;
 
 public class Player extends JComponent implements IRenderable,Pusheen{
 
-	private int direction, speed, x, y;
+	private int direction, speed,speedTemp, x, y;
 	private int bulletType;
 	public boolean isUsingLazer,isMoving;
 	//private boolean readyToAttack = false;
@@ -24,6 +24,7 @@ public class Player extends JComponent implements IRenderable,Pusheen{
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
+		this.speedTemp = speed;
 		this.isMoving = false; // filled code
 		
 		bulletType = 3; // assume
@@ -53,7 +54,7 @@ public class Player extends JComponent implements IRenderable,Pusheen{
 				
 			}
 			else{
-				b = new LazerBullet(x, y, speedX, speedY, directionX, directionY, false);
+				b = new PusheenBullet(x, y, speedX, speedY, directionX, directionY, false);
 			}
 			
 			InputUtility.setMouseLeftDown(false);
@@ -66,6 +67,14 @@ public class Player extends JComponent implements IRenderable,Pusheen{
 	}
 	
 	public void move(){
+		
+		if((InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)&&InputUtility.getKeyPressed(KeyEvent.VK_LEFT))
+			||!(InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)||InputUtility.getKeyPressed(KeyEvent.VK_LEFT))) {
+			speed = 0;
+			return;  
+		}
+		
+		speed = speedTemp;
 		if(InputUtility.getKeyPressed(KeyEvent.VK_LEFT) || InputUtility.getKeyPressed(KeyEvent.VK_A)){
 			direction = -1;
 			x += speed*direction;
@@ -91,16 +100,23 @@ public class Player extends JComponent implements IRenderable,Pusheen{
 	        //if(!isMoving||action==0) {		        
 	        //} 
 	        super.paintComponent(g);
-	        if(!isMoving) {
-	        	Resource.pusheenLeftStill.paintIcon(this, g, x, y);
-	        	return;
+	        
+	        if(!isMoving||(InputUtility.getKeyPressed(KeyEvent.VK_LEFT)&&InputUtility.getKeyPressed(KeyEvent.VK_RIGHT))
+	        		||!(InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)||InputUtility.getKeyPressed(KeyEvent.VK_LEFT))) {
+	        	if(direction==-1)
+	        		Resource.pusheenLeftStill.paintIcon(this, g, x, y);
+	        	else
+		        	Resource.pusheenRightStill.paintIcon(this, g, x, y);
+
 	        } 
 	        
-		    if(InputUtility.getKeyPressed(KeyEvent.VK_LEFT) || InputUtility.getKeyPressed(KeyEvent.VK_A))
+		    if(InputUtility.getKeyPressed(KeyEvent.VK_LEFT)&&!InputUtility.getKeyPressed(KeyEvent.VK_RIGHT))
 		         Resource.pusheenLeftRun.paintIcon(this, g, x, y);
 		        
-		    if(InputUtility.getKeyPressed(KeyEvent.VK_RIGHT) || InputUtility.getKeyPressed(KeyEvent.VK_D))
+		    if(InputUtility.getKeyPressed(KeyEvent.VK_RIGHT)&&!InputUtility.getKeyPressed(KeyEvent.VK_LEFT))
 		         Resource.pusheenRightRun.paintIcon(this, g, x, y);
+		    
+		   
 		        
 		       
 
@@ -132,7 +148,7 @@ public class Player extends JComponent implements IRenderable,Pusheen{
 	@Override
 	public int getZ() {
 		//return Integer.MAX_VALUE; 
-		return -1;
+		return Integer.MIN_VALUE;
 	}
 
 	public int getBulletType() {

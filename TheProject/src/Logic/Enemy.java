@@ -1,5 +1,6 @@
 package Logic;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics;
 
 import Main.Config;
@@ -10,10 +11,14 @@ public abstract class Enemy implements IRenderable, Destroyable{
 	protected int x,y,z,speed,direction;
 	protected int bulletType; // 1 = PLAIN, 2 = FIRE, 3 = BIG, 4 = LAZER
 	protected int hp;
+	protected int counter, fadeLimitTime = 100;
 	protected int attackDelayCount = 0, attackDelay;
 	protected int movingDelayCount = 0, movingDelay;
-	protected boolean isDestroyed;
+	protected boolean isDestroyed,isAttacked; // Net created field
 	protected static final int SPEED_POLICE = 5, SPEED_ARMY = 8;
+	protected static final AlphaComposite transcluentWhite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f);
+	protected static final AlphaComposite opaque = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
+	
 	
 	public Enemy(int x,int y,int z,int direction,int hp){
 		this.x = x;
@@ -21,6 +26,7 @@ public abstract class Enemy implements IRenderable, Destroyable{
 		this.z = z;
 		this.direction = direction;
 		this.hp = hp;
+		isAttacked = false;
 		isDestroyed = false;
 		attackDelay = RandomUtility.instance.random(Config.ENEMY_ATTACK_DEALY_MIN, Config.ENEMY_ATTACK_DEALY_MAX);
 		movingDelay = RandomUtility.instance.random(Config.ENEMY_ATTACK_DEALY_MIN, Config.ENEMY_ATTACK_DEALY_MAX);
@@ -29,7 +35,8 @@ public abstract class Enemy implements IRenderable, Destroyable{
 
 	public boolean isCollideWith(Bullet b){
 		//return (b.x - x)*(b.x - x) + (b.y - y)*(b.y - y) <= b.radius*b.radius ;
-		return b.x >= x && b.x <= x + 50 && b.y >= y && b.y <= y + 50;
+		isAttacked = b.x >= x && b.x <= x + 50 && b.y >= y && b.y <= y + 50;
+		return isAttacked;
 	}
 	
 	public void move(){

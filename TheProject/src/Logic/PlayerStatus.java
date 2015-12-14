@@ -10,7 +10,7 @@ public class PlayerStatus extends JPanel{
 	private int level;
 	private boolean isPause = false, isDestroyed;
 	private boolean isShielded;
-	private static final int MAX_SCORE = 10000, MIN_SCORE = 0, MAX_P = 100, MIN_P = 0;
+	private static final int MAX_SCORE = 10000, MIN_SCORE = 0, MAX_P = 100, MIN_P = 0, PLAYER_SPEED = 10;
 	private Player owner;
 	
 	public PlayerStatus(int hp, int mp, int exp){
@@ -19,7 +19,9 @@ public class PlayerStatus extends JPanel{
 		this.exp = exp;
 		this.isShielded = false;
 		
-		owner = new Player(Config.SCREEN_WIDTH/2, Config.SCREEN_HEIGHT/2,10); // assume speed = 10
+		// assume speed = 10, adjusted player's y-position
+		owner = new Player(Config.SCREEN_WIDTH/2, Config.SCREEN_HEIGHT/2+60,PLAYER_SPEED); 
+		
 		
 		score = MIN_SCORE;
 		isDestroyed = false;

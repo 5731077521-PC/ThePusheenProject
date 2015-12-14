@@ -16,10 +16,10 @@ public class Bullet implements IRenderable, Destroyable{
 	protected static final int HP_FIRE = 1, DAMAGE_FIRE = 5;
 	protected static final int HP_BIG = 20, DAMAGE_BIG = 10;
 	protected static final int HP_LAZER = 10000000, DAMAGE_LAZER = 15;
-	protected static final int RADIUS_PLAIN = 10;
-	protected static final int RADIUS_FIRE = 10;
-	protected static final int RADIUS_BIG = 20;
-	protected static final int RADIUS_LAZER = 15;
+	protected static final int RADIUS_PLAIN = 10; // 10
+	protected static final int RADIUS_FIRE = 10; // 10
+	protected static final int RADIUS_BIG = 15; // 20
+	protected static final int RADIUS_LAZER = 15; // 15
 	
 	protected int x, y;
 	protected int radius;
@@ -131,6 +131,7 @@ public class Bullet implements IRenderable, Destroyable{
 		else
 			g2.drawImage(Resource.bulletRight, null, x, y);
 
+		
 		/*
 		g.setColor(Color.BLACK);
 		g.fillOval(x-radius, y-radius, 2*radius, 2*radius);

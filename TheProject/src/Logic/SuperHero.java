@@ -3,13 +3,16 @@ package Logic;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import Main.Config;
 import RandomUtility.RandomUtility;
 import Render.Resource;
 
 public class SuperHero extends Enemy {
-
+	
+	private BufferedImage heroImageLeft,heroImageRight;
+	private int heroType;
 	private int directionX, directionY;
 	private int speedX, speedY;
 	private static final int SPEEDX_HERO = 15, SPEEDY_HERO = 5;
@@ -24,6 +27,16 @@ public class SuperHero extends Enemy {
 		speedY = SPEEDY_HERO;
 		
 		bulletType = 4; // lazer
+		heroType = RandomUtility.instance.random(0, 1) - 1;
+		
+		if(heroType==0) {
+			heroImageLeft = Resource.heroALeft;
+			heroImageRight = Resource.heroARight;
+		}
+		else {
+			heroImageLeft = Resource.heroBLeft;
+			heroImageRight = Resource.heroBRight;
+		}
 	}
 	
 	@Override
@@ -63,9 +76,9 @@ public class SuperHero extends Enemy {
 		g.fillRect(x, y, 50, 50); */
 		Graphics2D g2 = (Graphics2D) g;
 		if(directionX<0)
-			g2.drawImage(Resource.heroALeft, null, x, y);
+			g2.drawImage(heroImageLeft, null, x, y);
 		else
-			g2.drawImage(Resource.heroARight, null, x, y);
+			g2.drawImage(heroImageRight, null, x, y);
 
 
 		
